@@ -1,0 +1,11 @@
+EX2-2 ハードウェアリソースの情報取得
+
+・Linux
+→dmidecode
+
+・Mac
+→system_profiler
+
+・Windous
+→Windous＋Rで開くタブでmsinfo32
+  もしくはsysteminfo
