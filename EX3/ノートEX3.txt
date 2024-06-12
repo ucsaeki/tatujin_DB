@@ -1,0 +1,78 @@
+CREATE TABLE
+	branch_office_goods
+	(
+		branch_office_code CHAR(3),
+		branch_code CHAR(2),
+		goods_code CHAR(3),
+		PRIMARY KEY (branch_office_code,branch_code,goods_code)
+	)
+;
+
+
+CREATE TABLE
+	branch_office_goods
+	(
+		goods_category_code CHAR(2),
+		goods_category VARCHAR(20),
+		PRIMARY KEY(goods_category_code)
+	)
+;
+
+
+
+SELECT
+	branch_office_code AS '支社コード',
+	branch_code AS '支店コード',
+	goods_code AS '商品コード'
+FROM
+	branch_office_goods
+;
+
+
+
+INSERT INTO
+	branch_office_goods
+VALUES
+	(
+		'002',
+		'02',
+		'008'
+	)
+;
+
+
+ALTER TABLE
+	goods
+ADD
+	goods_category_code CHAR(2)
+AFTER
+	goods_name
+;
+
+INSERT INTO
+	branch_office
+VALUES
+	(
+		'002',
+		'大阪',
+		'02',
+		'豊中',
+		'008',
+		'爪切り',
+		'C4',
+		'日用雑貨'
+	)
+;
+
+SELECT
+	branch_office_code AS '支社コード',
+	branch_office_name AS '支社名',
+	branch_code AS '支店コード',
+	branch_name AS '支店名',
+	goods_code AS '商品コード',
+	goods_name AS '商品名',
+	goods_category_code AS '商品分類コード',
+	goods_category AS '分類名'
+FROM
+	branch_office
+;
