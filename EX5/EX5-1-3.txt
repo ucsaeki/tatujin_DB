@@ -1,0 +1,23 @@
+EX5-1-3 最も取り扱い商品数が多い支店の支店コードと商品数
+
+/*支店と支店商品テーブルを結合し、支店ごとの取扱商品数を降順ソートした場合の一番上の(一番大きな)値とその支店の支店コードを表示する*/
+
+SELECT
+	b.branch_code AS '支店コード',
+	COUNT(goods_code) AS '取り扱い商品数'
+FROM
+	branch_office_goods AS bog
+INNER JOIN
+	branches AS b
+ON
+	bog.branch_office_code = b.branch_office_code
+AND
+	bog.branch_code = b.branch_code
+GROUP BY
+	b.branch_name
+ORDER BY
+	COUNT(goods_code) DESC
+LIMIT
+	/*最初から一列分表示する*/
+	0,1
+;

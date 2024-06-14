@@ -1,0 +1,20 @@
+EX5-2-3
+
+・支店と支店商品テーブルを結合した支店名商品テーブルを作成することで、結合が不要になる。
+
+
+/*支店名商品テーブルの支店名をグループ化し、支店ごとの取扱商品数の合計が最も多いものを表示する。*/
+
+SELECT
+	branch_code AS '支店コード',
+	COUNT(goods_code) AS '取り扱い商品数'
+FROM
+	unite_branch_goods
+GROUP BY
+	branch_name
+ORDER BY
+	COUNT(goods_code) DESC
+LIMIT
+	/*最初から一列分表示する*/
+	0,1
+;

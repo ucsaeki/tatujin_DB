@@ -1,0 +1,34 @@
+SELECT
+	*
+FROM
+(
+	branch_office_goods AS bog
+INNER JOIN
+	goods AS g
+ON
+	bog.goods_code = g.goods_code
+	)
+INNER JOIN
+	offices AS o
+ON
+	o.branch_office_code = bog.branch_office_code
+;
+
+
+SELECT DISTINCT
+	*
+FROM
+	(
+		branch_office_goods AS bog
+	INNER JOIN
+		offices AS o
+	ON
+		bog.branch_office_code =o.branch_office_code
+	)
+INNER JOIN
+	branches AS b
+ON
+	bog.branch_code = bog.branch_code
+GROUP BY
+	bog.goods_code
+;

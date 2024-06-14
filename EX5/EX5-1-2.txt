@@ -1,0 +1,29 @@
+EX5-1-2 支社、支店別の取り扱い商品の一覧
+
+/*支社、支店、支店商品、商品の4つのテーブルを結合し、支社、支店ごとの取り扱い商品を全て表示する*/
+
+SELECT
+	branch_office_name AS '支社名',
+	branch_name AS '支店名',
+	g.goods_name AS '商品名'
+FROM
+	(
+		branches AS b
+	INNER JOIN
+		offices AS o
+	ON
+		b.branch_office_code = o.branch_office_code
+	)
+INNER JOIN
+	(
+		branch_office_goods AS bog
+	INNER JOIN
+		goods AS g
+	ON
+		bog.goods_code = g.goods_code
+	)
+ON
+	b.branch_office_code = bog.branch_office_code
+AND
+	b.branch_code = bog.branch_code
+;

@@ -1,0 +1,21 @@
+EX6-2 インデックスの再編成
+
+・Oracle
+→COALESCE、ALTER TABLEとREBUILD
+COALESCEで新しいインデックスを結合させる、もしくはALTER TABLEとREBUILDを用いてインデックスを新しく作る。COALESCEの方が負荷が軽いが、REBUILDの方が無駄に使用されている容量を削除して空き容量を作り出すことができる。
+
+・SQL Server
+→rebuildもしくはreorganize
+rebuildはインデックス全体を再構築し、reorganizeはリーフレベルでの再編成が行われる。目安として、インデックスの断片化度合いが30%未満ならreorganaize、30%以上ならrebuildを使用するべき。
+
+・DB2
+→REORG INDEX
+REORGコマンドを使用することで、再編成をすることができる。また、INDEXコマンドによって新しインデックスを作成することができる。
+
+・PostgreSQL
+→reindexもしくはpg_repackを用いる。
+  drop indexによって削除した後、reindexを使用してインデックスを作る。ただし主キーのインデックスを再編成することはできないため、pg_repackを用いる。pg_repackでは、新しく作成したインデックスともともとのインデックスを入れ替えること
+  
+・mySQL
+→ALTER TABLE、REPAIR TABLEを使用する。
+  ALTER TABLEでは、現在使用中のインデックスを一度削除し、新しいインデックスを作成できる。ただし、非主キーインデックスのみで利用可能である。主キーインデックスにはREPAIR TABLEを用いて、削除せずに修復して再利用する形で再編成を行う。
