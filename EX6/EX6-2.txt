@@ -13,9 +13,9 @@ rebuildはインデックス全体を再構築し、reorganizeはリーフレベ
 REORGコマンドを使用することで、再編成をすることができる。また、INDEXコマンドによって新しインデックスを作成することができる。
 
 ・PostgreSQL
-→reindexもしくはpg_repackを用いる。
+→reindexもしくはpg_repack
   drop indexによって削除した後、reindexを使用してインデックスを作る。ただし主キーのインデックスを再編成することはできないため、pg_repackを用いる。pg_repackでは、新しく作成したインデックスともともとのインデックスを入れ替えること
   
 ・mySQL
-→ALTER TABLE、REPAIR TABLEを使用する。
-  ALTER TABLEでは、現在使用中のインデックスを一度削除し、新しいインデックスを作成できる。ただし、非主キーインデックスのみで利用可能である。主キーインデックスにはREPAIR TABLEを用いて、削除せずに修復して再利用する形で再編成を行う。
+→ALTER TABLE DROP INDEX、REPAIR TABLE、OPTIMIZE TABLE、mysqldumpによるリロード
+  ALTER TABLEでは、現在使用中のインデックスを一度削除し、新しいインデックスを作成できる。ただし、非主キーインデックスのみで利用可能である。主キーインデックスにはREPAIR TABLEを用いて、削除せずに修復して再利用する形で再編成を行う。OPTIMIZE TABLEでは、未使用になった領域を回収し、圧縮することが可能であり、容量を確保することができる。mysqldumpは、現在のデータをいったん全削除して再作成しなおす。-dオプションを使用してインデックスのみを全削除、再構築の対象に選ぶことが可能。

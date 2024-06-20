@@ -1,0 +1,16 @@
+EX9-2 実数のデータ型
+
+・Oracle
+→BINALY FLOATデータ型、もしくはBINALY DOUBLEデータ型
+
+・SQLServer
+→float型、real型
+
+・DB2
+→REAL型、DOUBLE型、DECFLOAT型
+
+・PostgreSQL
+→real型、double型、precision型、numeric型、decimal型
+
+・MySQL
+→FLOAT型、DOUBLE型
