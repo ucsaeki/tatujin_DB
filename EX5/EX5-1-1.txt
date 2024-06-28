@@ -1,24 +1,18 @@
 EX5-1-1 商品分類ごとの商品数を求める。
 
-・支店商品、商品、商品分類の3つのテーブルを内部結合し、支店商品で登場する分類名ごとの商品の個数を数える。
+/*商品テーブル、商品分類テーブルを内部結合し、商品分類コードごとの商品の個数を数える。*/
 
 
 SELECT
 	c.goods_category_code AS '商品分類コード',
 	c.goods_category AS '分類名',
-	COUNT(c.goods_category_code) AS '商品数'
+	COUNT(g.goods_category_code) AS '商品数'
 FROM
-	(
-		branch_office_goods AS bog
-	INNER JOIN
-		goods AS g
-	ON
-		bog.goods_code = g.goods_code
-	)
-INNER JOIN
 	goods_categories AS c
+INNER JOIN
+	goods AS g
 ON
-	g.goods_category_code = c.goods_category_code
+	c.goods_category_code = g.goods_category_code
 GROUP BY
 	c.goods_category_code
 ;

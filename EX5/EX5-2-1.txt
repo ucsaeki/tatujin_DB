@@ -1,16 +1,14 @@
 EX5-2-1
 
-・商品テーブルと商品分類テーブルを合体させる。
-仮に合体させた場合のSQL文は下記のようになる。5-1-1が三つのテーブルを結合させていたのに対してこちらは結合が必要ないため、17行から8行へと短縮されている。
+・商品分類テーブルに「商品数」を表す列を追加する(goods_numbers)。
+→これにより、商品テーブルとの結合と、COUNT句による回数計算が不要になり、商品分類テーブルの参照のみで完結させることができる。
 
-/*作成した商品名商品分類テーブルの商品分類コードをグループ化し、商品分類ごとの商品数を表示する*/
 
 SELECT
 	goods_category_code AS '商品分類コード',
-	goods_category AS '分類名',
-	COUNT(goods_category_code) AS '商品数'
+	goods_category AS '商品名',
+	goods_numbers AS '商品数'
 FROM
-	unite_goods
-GROUP BY
-	goods_category_code
+	goods_categories
 ;
+

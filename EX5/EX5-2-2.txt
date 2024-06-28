@@ -1,27 +1,12 @@
 EX5-2-2
 
-・支社と支店を結合した支社支店テーブルの作成
-→支店商品テーブルは支社支店と商品テーブルの関連実体という関係であり、これ以上の結合は非正規化の欠点が大きくなってくると考えられるため行わない。
-
-
-/*作成した支社支店テーブルと支店商品、商品テーブルを結合させ、支社、支店ごとの取り扱い商品一覧を表示する*/
+・支店商品テーブルに支店名、支社名、商品名を追加する。
+→これにより、4つのテーブルを結合させていた処理が不要になり、支社、支店ごとの商品数を支店商品テーブル単独で表示することができる。
 
 SELECT
 	branch_office_name AS '支社名',
 	branch_name AS '支店名',
-	g.goods_name AS '商品名'
+	goods_name AS '商品名'
 FROM
-	branch_office_branches AS bob
-INNER JOIN
-	(
-		branch_office_goods AS bog
-	INNER JOIN
-		goods AS g
-	ON
-		bog.goods_code = g.goods_code
-	)
-ON
-	bob.branch_office_code = bog.branch_office_code
-AND
-	bob.branch_code = bog.branch_code
+	branch_office_goods
 ;
